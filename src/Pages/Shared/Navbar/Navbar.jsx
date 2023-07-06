@@ -10,6 +10,7 @@ const Navbar = () => {
     <>
       <li className="text-xl">
         <NavLink
+          to="/"
           className={({ isActive }) => (isActive ? "active-link" : "link")}
         >
           Home
@@ -17,18 +18,32 @@ const Navbar = () => {
       </li>
       <li className="text-xl">
         <NavLink
+          to="/products"
           className={({ isActive }) => (isActive ? "active-link" : "link")}
         >
-          Shop
+          Products
         </NavLink>
       </li>
-      <li className="text-xl">
-        <NavLink
-          className={({ isActive }) => (isActive ? "active-link" : "link")}
-        >
-          Dashboard
-        </NavLink>
-      </li>
+      {user && (
+        <>
+          <li className="text-xl">
+            <NavLink
+              to="/cart"
+              className={({ isActive }) => (isActive ? "active-link" : "link")}
+            >
+              Cart
+            </NavLink>
+          </li>
+          <li className="text-xl">
+            <NavLink
+              to="/orders"
+              className={({ isActive }) => (isActive ? "active-link" : "link")}
+            >
+              Orders
+            </NavLink>
+          </li>
+        </>
+      )}
     </>
   );
   return (
