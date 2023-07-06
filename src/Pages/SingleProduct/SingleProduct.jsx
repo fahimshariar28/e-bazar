@@ -1,10 +1,45 @@
 import { Rating } from "@smastrom/react-rating";
 import { useLoaderData } from "react-router-dom";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
+import useAuth from "../../hooks/useAuth";
+import Swal from "sweetalert2";
 
 const SingleProduct = () => {
+  const [axiosSecure] = useAxiosSecure();
+  const { user } = useAuth();
   const product = useLoaderData();
   console.log(product);
   const { name, price, rating, description, image } = product;
+  const handleAddToCart = (product) => {
+    if (!user) {
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "You need to login first!",
+        showConfirmButton: false,
+        timer: 1500,
+      });
+    } else {
+      const cartItem = {
+        productId: product._id,
+        name: product.name,
+        price: product.price,
+        email: user.email,
+      };
+      console.log(cartItem);
+      axiosSecure.post("/addtocart", cartItem).then((res) => {
+        console.log(res);
+        Swal.fire({
+          icon: "success",
+          title: "Success",
+          text: "Product added to cart!",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+      });
+    }
+  };
+
   return (
     <div className="w-9/12 mx-auto my-10 bg-base-200">
       <div className="hero">
@@ -21,7 +56,12 @@ const SingleProduct = () => {
               Price: ${price}
             </h1>
             <hr className="w-80 h-1 mx-auto my-4 bg-primary border-0 rounded" />
-            <button className="btn btn-primary">Add to cart</button>
+            <button
+              onClick={() => handleAddToCart(product)}
+              className="btn btn-primary"
+            >
+              Add to cart
+            </button>
           </div>
         </div>
       </div>

@@ -1,8 +1,42 @@
 import { Rating } from "@smastrom/react-rating";
 import { Link } from "react-router-dom";
+import useAuth from "../hooks/useAuth";
+import Swal from "sweetalert2";
+import useAxiosSecure from "../hooks/useAxiosSecure";
 
 const ProductCard = ({ product }) => {
+  const [axiosSecure] = useAxiosSecure();
+  const { user } = useAuth();
   const { name, price, image, rating, _id } = product;
+  const handleAddToCart = (product) => {
+    if (!user) {
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "You need to login first!",
+        showConfirmButton: false,
+        timer: 1500,
+      });
+    } else {
+      const cartItem = {
+        productId: product._id,
+        name: product.name,
+        price: product.price,
+        email: user.email,
+      };
+      console.log(cartItem);
+      axiosSecure.post("/addtocart", cartItem).then((res) => {
+        console.log(res);
+        Swal.fire({
+          icon: "success",
+          title: "Success",
+          text: "Product added to cart!",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+      });
+    }
+  };
   return (
     <div className="card w-96 bg-base-100 shadow-xl">
       <figure>
@@ -20,7 +54,12 @@ const ProductCard = ({ product }) => {
           <Link to={`/product/${_id}`}>
             <button className="btn btn-warning">View Details</button>
           </Link>
-          <button className="btn btn-primary">Add to Cart</button>
+          <button
+            onClick={() => handleAddToCart(product)}
+            className="btn btn-primary"
+          >
+            Add to Cart
+          </button>
         </div>
       </div>
     </div>
