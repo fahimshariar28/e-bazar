@@ -3,6 +3,7 @@ import MainLayout from "../Layout/MainLayout";
 import HomePage from "../Pages/HomePage/HomePage";
 import Products from "../Pages/Products/Products";
 import SingleProduct from "../Pages/SingleProduct/SingleProduct";
+import Register from "../Register/Register";
 
 const router = createBrowserRouter([
   {
@@ -23,6 +24,10 @@ const router = createBrowserRouter([
         element: <SingleProduct />,
         loader: ({ params }) =>
           fetch(`http://localhost:5000/product/${params.id}`),
+      },
+      {
+        path: "/register",
+        element: <Register />,
       },
     ],
   },
