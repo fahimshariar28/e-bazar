@@ -1,4 +1,4 @@
-const useTitle = ({ title }) => {
+const SectionTitle = ({ title }) => {
   const hrColor = "rgb(0, 0, 255)";
 
   return (
@@ -16,4 +16,4 @@ const useTitle = ({ title }) => {
   );
 };
 
-export default useTitle;
+export default SectionTitle;
