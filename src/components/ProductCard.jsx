@@ -1,3 +1,4 @@
+import { Rating } from "@smastrom/react-rating";
 import { Link } from "react-router-dom";
 
 const ProductCard = ({ product }) => {
@@ -11,7 +12,9 @@ const ProductCard = ({ product }) => {
         <h2 className="card-title">{name}</h2>
         <div className="flex justify-between">
           <p>Price: ${price}</p>
-          <p>Rating: {rating}</p>
+          <p>
+            <Rating value={rating} readOnly style={{ maxWidth: 150 }} />
+          </p>
         </div>
         <div className="card-actions justify-between items-center">
           <Link to={`/product/${_id}`}>
