@@ -1,6 +1,7 @@
 import { createBrowserRouter } from "react-router-dom";
 import MainLayout from "../Layout/MainLayout";
 import HomePage from "../Pages/HomePage/HomePage";
+import Products from "../Pages/Products/Products";
 
 const router = createBrowserRouter([
   {
@@ -10,6 +11,11 @@ const router = createBrowserRouter([
       {
         path: "/",
         element: <HomePage />,
+      },
+      {
+        path: "/products",
+        element: <Products />,
+        loader: () => fetch("http://localhost:5000/totalProducts"),
       },
     ],
   },
