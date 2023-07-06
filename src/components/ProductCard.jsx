@@ -1,5 +1,7 @@
+import { Link } from "react-router-dom";
+
 const ProductCard = ({ product }) => {
-  const { name, price, image, rating } = product;
+  const { name, price, image, rating, _id } = product;
   return (
     <div className="card w-96 bg-base-100 shadow-xl">
       <figure>
@@ -12,7 +14,9 @@ const ProductCard = ({ product }) => {
           <p>Rating: {rating}</p>
         </div>
         <div className="card-actions justify-between items-center">
-          <button className="btn btn-warning">View Details</button>
+          <Link to={`/product/${_id}`}>
+            <button className="btn btn-warning">View Details</button>
+          </Link>
           <button className="btn btn-primary">Add to Cart</button>
         </div>
       </div>
