@@ -22,9 +22,11 @@ const SingleProduct = () => {
     } else {
       const cartItem = {
         productId: product._id,
+        image: product.image,
         name: product.name,
         price: product.price,
         email: user.email,
+        userName: user.displayName,
       };
       console.log(cartItem);
       axiosSecure.post("/addtocart", cartItem).then((res) => {
