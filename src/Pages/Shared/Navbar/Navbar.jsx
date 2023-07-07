@@ -1,8 +1,10 @@
 import { Link, NavLink } from "react-router-dom";
 import useAuth from "../../../hooks/useAuth";
+import useAdmin from "../../../hooks/useAdmin";
 
 const Navbar = () => {
   const { user, logOut } = useAuth();
+  const [isAdmin] = useAdmin();
   const handleLogout = () => {
     logOut();
   };
@@ -42,6 +44,18 @@ const Navbar = () => {
               Orders
             </NavLink>
           </li>
+          {isAdmin && (
+            <li className="text-xl">
+              <NavLink
+                to="/dashboard/home"
+                className={({ isActive }) =>
+                  isActive ? "active-link" : "link"
+                }
+              >
+                Dashboard
+              </NavLink>
+            </li>
+          )}
         </>
       )}
     </>
