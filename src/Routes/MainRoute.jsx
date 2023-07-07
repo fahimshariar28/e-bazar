@@ -14,6 +14,7 @@ import Orderlist from "../Pages/Dashboard/Orderlist/Orderlist";
 import Customers from "../Pages/Dashboard/Customers/Customers";
 import Productlist from "../Pages/Dashboard/Productlist/Productlist";
 import AddProduct from "../Pages/Dashboard/AddProduct/AddProduct";
+import PrivateRoute from "./PrivateRoute";
 
 const router = createBrowserRouter([
   {
@@ -37,15 +38,28 @@ const router = createBrowserRouter([
       },
       {
         path: "/cart",
-        element: <Cart />,
+        element: (
+          <PrivateRoute>
+            <Cart />
+          </PrivateRoute>
+        ),
       },
       {
         path: "/checkout",
-        element: <Checkout />,
+        element: (
+          <PrivateRoute>
+            <Checkout />
+          </PrivateRoute>
+        ),
       },
       {
         path: "/orders",
-        element: <Orders />,
+        element: (
+          <PrivateRoute>
+            {" "}
+            <Orders />{" "}
+          </PrivateRoute>
+        ),
       },
       {
         path: "/register",
@@ -59,7 +73,11 @@ const router = createBrowserRouter([
   },
   {
     path: "dashboard",
-    element: <DashboardLayout />,
+    element: (
+      <PrivateRoute>
+        <DashboardLayout />
+      </PrivateRoute>
+    ),
     children: [
       {
         path: "home",
