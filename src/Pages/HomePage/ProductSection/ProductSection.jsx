@@ -7,7 +7,9 @@ const ProductSection = () => {
   const { data, isLoading } = useQuery({
     queryKey: ["products"],
     queryFn: async () => {
-      const response = await fetch("http://localhost:5000/products");
+      const response = await fetch(
+        "https://e-bazar-server-sigma.vercel.app/products"
+      );
       const data = await response.json();
       return data;
     },

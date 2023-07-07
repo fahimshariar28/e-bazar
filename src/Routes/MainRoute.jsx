@@ -30,13 +30,14 @@ const router = createBrowserRouter([
       {
         path: "/products",
         element: <Products />,
-        loader: () => fetch("http://localhost:5000/totalProducts"),
+        loader: () =>
+          fetch("https://e-bazar-server-sigma.vercel.app/totalProducts"),
       },
       {
         path: "/product/:id",
         element: <SingleProduct />,
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/product/${params.id}`),
+          fetch(`https://e-bazar-server-sigma.vercel.app/product/${params.id}`),
       },
       {
         path: "/cart",

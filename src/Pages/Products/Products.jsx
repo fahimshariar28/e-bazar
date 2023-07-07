@@ -15,7 +15,7 @@ const Products = () => {
     queryKey: ["products"],
     queryFn: async () => {
       const response = await fetch(
-        `http://localhost:5000/products?page=${currentPage}&limit=${productsPerPage}`
+        `https://e-bazar-server-sigma.vercel.app/products?page=${currentPage}&limit=${productsPerPage}`
       );
       const data = await response.json();
       return data;

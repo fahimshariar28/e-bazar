@@ -6,13 +6,17 @@ const Home = () => {
   const { data: users } = useQuery({
     queryKey: ["users"],
     queryFn: () =>
-      fetch("http://localhost:5000/customers").then((res) => res.json()),
+      fetch("https://e-bazar-server-sigma.vercel.app/customers").then((res) =>
+        res.json()
+      ),
   });
 
   const { data: orders } = useQuery({
     queryKey: ["orders"],
     queryFn: () =>
-      fetch("http://localhost:5000/allorders").then((res) => res.json()),
+      fetch("https://e-bazar-server-sigma.vercel.app/allorders").then((res) =>
+        res.json()
+      ),
   });
 
   const totalPrice = orders?.reduce((acc, item) => acc + item.price, 0);
