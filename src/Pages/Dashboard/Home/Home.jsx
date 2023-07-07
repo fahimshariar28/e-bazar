@@ -3,12 +3,6 @@ import SectionTitle from "../../Shared/SectionTitle/SectionTitle";
 import { Link } from "react-router-dom";
 
 const Home = () => {
-  const { data: products } = useQuery({
-    queryKey: ["products"],
-    queryFn: () =>
-      fetch("http://localhost:5000/totalProducts").then((res) => res.json()),
-  });
-
   const { data: users } = useQuery({
     queryKey: ["users"],
     queryFn: () =>
@@ -23,8 +17,6 @@ const Home = () => {
 
   const totalPrice = orders?.reduce((acc, item) => acc + item.price, 0);
   const customers = users?.length;
-  const totalProducts = products.totalProducts;
-  console.log(totalProducts);
 
   const formatOrderTime = (timestamp) => {
     const orderTime = new Date(timestamp);
@@ -49,11 +41,6 @@ const Home = () => {
           <div className="stat place-items-center">
             <div className="stat-title">Customers</div>
             <div className="stat-value text-secondary">{customers}</div>
-          </div>
-
-          <div className="stat place-items-center">
-            <div className="stat-title">Total Items</div>
-            <div className="stat-value">{totalProducts}</div>
           </div>
         </div>
       </div>

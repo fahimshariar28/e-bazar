@@ -10,6 +10,7 @@ import Checkout from "../Pages/Checkout/Checkout";
 import Orders from "../Pages/Orders/Orders";
 import DashboardLayout from "../Layout/DashboardLayout";
 import Home from "../Pages/Dashboard/Home/Home";
+import Orderlist from "../Pages/Dashboard/Orderlist/Orderlist";
 
 const router = createBrowserRouter([
   {
@@ -60,6 +61,10 @@ const router = createBrowserRouter([
       {
         path: "home",
         element: <Home />,
+      },
+      {
+        path: "orderlist",
+        element: <Orderlist />,
       },
     ],
   },
