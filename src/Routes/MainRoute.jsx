@@ -13,6 +13,7 @@ import Home from "../Pages/Dashboard/Home/Home";
 import Orderlist from "../Pages/Dashboard/Orderlist/Orderlist";
 import Customers from "../Pages/Dashboard/Customers/Customers";
 import Productlist from "../Pages/Dashboard/Productlist/Productlist";
+import AddProduct from "../Pages/Dashboard/AddProduct/AddProduct";
 
 const router = createBrowserRouter([
   {
@@ -75,6 +76,10 @@ const router = createBrowserRouter([
       {
         path: "productlist",
         element: <Productlist />,
+      },
+      {
+        path: "addproduct",
+        element: <AddProduct />,
       },
     ],
   },
