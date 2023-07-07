@@ -8,6 +8,7 @@ import Login from "../Pages/Login/Login";
 import Cart from "../Pages/Cart/Cart";
 import Checkout from "../Pages/Checkout/Checkout";
 import Orders from "../Pages/Orders/Orders";
+import DashboardLayout from "../Layout/DashboardLayout";
 
 const router = createBrowserRouter([
   {
@@ -50,6 +51,10 @@ const router = createBrowserRouter([
         element: <Login />,
       },
     ],
+  },
+  {
+    path: "/dashboard",
+    element: <DashboardLayout />,
   },
 ]);
 
