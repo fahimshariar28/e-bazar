@@ -15,6 +15,7 @@ import Customers from "../Pages/Dashboard/Customers/Customers";
 import Productlist from "../Pages/Dashboard/Productlist/Productlist";
 import AddProduct from "../Pages/Dashboard/AddProduct/AddProduct";
 import PrivateRoute from "./PrivateRoute";
+import AdminRoute from "./AdminRoute";
 
 const router = createBrowserRouter([
   {
@@ -75,7 +76,9 @@ const router = createBrowserRouter([
     path: "dashboard",
     element: (
       <PrivateRoute>
-        <DashboardLayout />
+        <AdminRoute>
+          <DashboardLayout />
+        </AdminRoute>
       </PrivateRoute>
     ),
     children: [
