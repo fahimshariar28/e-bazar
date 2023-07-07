@@ -11,6 +11,7 @@ import Orders from "../Pages/Orders/Orders";
 import DashboardLayout from "../Layout/DashboardLayout";
 import Home from "../Pages/Dashboard/Home/Home";
 import Orderlist from "../Pages/Dashboard/Orderlist/Orderlist";
+import Customers from "../Pages/Dashboard/Customers/Customers";
 
 const router = createBrowserRouter([
   {
@@ -65,6 +66,10 @@ const router = createBrowserRouter([
       {
         path: "orderlist",
         element: <Orderlist />,
+      },
+      {
+        path: "customers",
+        element: <Customers />,
       },
     ],
   },
