@@ -9,6 +9,7 @@ import Cart from "../Pages/Cart/Cart";
 import Checkout from "../Pages/Checkout/Checkout";
 import Orders from "../Pages/Orders/Orders";
 import DashboardLayout from "../Layout/DashboardLayout";
+import Home from "../Pages/Dashboard/Home/Home";
 
 const router = createBrowserRouter([
   {
@@ -53,8 +54,14 @@ const router = createBrowserRouter([
     ],
   },
   {
-    path: "/dashboard",
+    path: "dashboard",
     element: <DashboardLayout />,
+    children: [
+      {
+        path: "home",
+        element: <Home />,
+      },
+    ],
   },
 ]);
 
