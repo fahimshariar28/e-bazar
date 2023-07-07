@@ -12,6 +12,7 @@ import DashboardLayout from "../Layout/DashboardLayout";
 import Home from "../Pages/Dashboard/Home/Home";
 import Orderlist from "../Pages/Dashboard/Orderlist/Orderlist";
 import Customers from "../Pages/Dashboard/Customers/Customers";
+import Productlist from "../Pages/Dashboard/Productlist/Productlist";
 
 const router = createBrowserRouter([
   {
@@ -70,6 +71,10 @@ const router = createBrowserRouter([
       {
         path: "customers",
         element: <Customers />,
+      },
+      {
+        path: "productlist",
+        element: <Productlist />,
       },
     ],
   },
