@@ -44,7 +44,7 @@ const Navbar = () => {
               Orders
             </NavLink>
           </li>
-          {isAdmin && (
+          {isAdmin ? (
             <li className="text-xl">
               <NavLink
                 to="/dashboard/home"
@@ -55,7 +55,7 @@ const Navbar = () => {
                 Dashboard
               </NavLink>
             </li>
-          )}
+          ) : null}
         </>
       )}
     </>

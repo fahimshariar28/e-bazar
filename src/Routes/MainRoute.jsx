@@ -16,6 +16,7 @@ import Productlist from "../Pages/Dashboard/Productlist/Productlist";
 import AddProduct from "../Pages/Dashboard/AddProduct/AddProduct";
 import PrivateRoute from "./PrivateRoute";
 import AdminRoute from "./AdminRoute";
+import AdminRegister from "../Register/AdminRegister";
 
 const router = createBrowserRouter([
   {
@@ -69,6 +70,10 @@ const router = createBrowserRouter([
       {
         path: "/login",
         element: <Login />,
+      },
+      {
+        path: "/adminregister",
+        element: <AdminRegister />,
       },
     ],
   },

@@ -3,7 +3,7 @@ import Swal from "sweetalert2";
 import useAuth from "../hooks/useAuth";
 import { useForm } from "react-hook-form";
 
-const Register = () => {
+const AdminRegister = () => {
   const { createUser, updateUserProfile } = useAuth();
   const navigate = useNavigate();
 
@@ -28,7 +28,7 @@ const Register = () => {
             name,
             email,
             image: photoUrl,
-            role: "customer",
+            role: "admin",
           };
           fetch("http://localhost:5000/adduser", {
             method: "POST",
@@ -56,10 +56,10 @@ const Register = () => {
     <div>
       <div>
         <p className="text-xl text-center">
-          To register as Admin{" "}
+          To register as Customer{" "}
           <span className="text-primary">
             {" "}
-            <Link to="/adminregister">Click Here</Link>{" "}
+            <Link to="/register">Click Here</Link>{" "}
           </span>{" "}
         </p>
       </div>
@@ -134,4 +134,4 @@ const Register = () => {
   );
 };
 
-export default Register;
+export default AdminRegister;
