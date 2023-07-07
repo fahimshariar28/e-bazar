@@ -3,16 +3,27 @@ import useAuth from "../../../hooks/useAuth";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import SectionTitle from "../../Shared/SectionTitle/SectionTitle";
 import Swal from "sweetalert2";
+import { useState } from "react";
 
 const Productlist = () => {
   const { user, loading } = useAuth();
   const [axiosSecure] = useAxiosSecure();
+  const [uniqueid, setUniqueId] = useState(null);
 
   const { data, isLoading, refetch } = useQuery({
     queryKey: ["products", user?.email],
     enabled: !!user?.email && !loading,
     queryFn: async () => {
       const res = await axiosSecure.get(`/allproducts`);
+      return res.data;
+    },
+  });
+
+  const { data: product } = useQuery({
+    queryKey: ["product", uniqueid],
+    enabled: !!uniqueid,
+    queryFn: async () => {
+      const res = await axiosSecure.get(`/product/${uniqueid}`);
       return res.data;
     },
   });
@@ -63,6 +74,15 @@ const Productlist = () => {
                       <td>{product.rating}</td>
                       <td>
                         <button
+                          onClick={() => {
+                            window.my_modal_4.showModal();
+                            setUniqueId(product._id);
+                          }}
+                          className="btn btn-primary btn-sm mr-2"
+                        >
+                          See Details
+                        </button>
+                        <button
                           onClick={() => handleDelete(product._id)}
                           className="btn btn-sm btn-error"
                         >
@@ -73,6 +93,46 @@ const Productlist = () => {
                   ))}
                 </tbody>
               </table>
+              <dialog id="my_modal_4" className="modal">
+                <div method="dialog" className="modal-box w-11/12 max-w-5xl">
+                  {product && (
+                    <>
+                      {/* show Product details */}
+                      <div className="flex justify-between items-center">
+                        <h1 className="text-2xl font-bold text-primary">
+                          {product.name}
+                        </h1>
+                        <button
+                          onClick={() => window.my_modal_4.close()}
+                          className="btn btn-sm btn-error"
+                        >
+                          Close
+                        </button>
+                      </div>
+
+                      <div className="flex justify-between items-center">
+                        <div className="w-1/2">
+                          <img className="w-full" src={product.image} alt="" />
+                        </div>
+                        <div className="w-1/2">
+                          <p className="text-xl font-bold">
+                            Price: {product.price}
+                          </p>
+                          <p className="text-xl font-bold">
+                            Rating: {product.rating}
+                          </p>
+                          <p className="text-xl font-bold">
+                            Category: {product.category}
+                          </p>
+                          <p className="text-xl font-bold">
+                            Description: {product.description}
+                          </p>
+                        </div>
+                      </div>
+                    </>
+                  )}
+                </div>
+              </dialog>
             </div>
           </>
         )}
